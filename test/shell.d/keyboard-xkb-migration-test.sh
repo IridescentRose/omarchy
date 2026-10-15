@@ -39,7 +39,7 @@ export LIMINE_REBUILD_MARKER
 # repair must not depend on the machine's real one.
 run_migration() {
   local vconsole="$1" hooks="${2:-$TMPDIR/absent-hooks.conf}"
-  PATH="$stub_bin:$PATH" OMARCHY_PATH="$ROOT" OMARCHY_VCONSOLE_CONF="$vconsole" \
+  PATH="$stub_bin:$ROOT/bin:$PATH" OMARCHY_PATH="$ROOT" OMARCHY_VCONSOLE_CONF="$vconsole" \
     OMARCHY_HOOKS_CONF="$hooks" \
     bash -euo pipefail "$migration" >/dev/null ||
     fail "migration exits clean for $(basename "$vconsole")"
